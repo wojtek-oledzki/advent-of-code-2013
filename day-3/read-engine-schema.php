@@ -30,8 +30,8 @@ for($rowNumber = 0; $rowNumber < count($inputSchema); ++$rowNumber) {
     }
 }
 
-var_dump($foundParts);
-print array_sum($foundParts);
+// var_dump($foundParts);
+print "parts sum: " . array_sum($foundParts) . "\n";
 
 function isPartNumber($rowNumber, $start, $len) {
     global $inputSchema, $inputRowCount, $foundParts;
