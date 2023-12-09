@@ -1,0 +1,10 @@
+LR
+
+DGA = (GUB, XXX)
+GUB = (XXX, AVZ)
+AVZ = (GUB, XXX)
+KLA = (FVB, XXX)
+FVB = (GHC, GHC)
+GHC = (WQZ, WQZ)
+WQZ = (FVB, FVB)
+XXX = (XXX, XXX)
