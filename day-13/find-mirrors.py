@@ -35,14 +35,13 @@ def analyse(file):
                 mapCols[i] += c
     print(f"total sum: {sum}")
 
+
 def analyseMap(rows, cols):
     mirrorPosition = findMirror(rows)
     if mirrorPosition == -1:
         mirrorPosition = findMirror(cols)
-        # print(f"mirror column position {mirrorPosition}")
         return mirrorPosition
     else:
-        # print(f"mirror row position {mirrorPosition}")
         return 100 * mirrorPosition
 
 
@@ -50,10 +49,8 @@ def findMirror(lines):
     i = 0
     size = len(lines)
 
-    # let's hope there are
     while(i < size - 1):
         if lines[i] == lines[i+1]:
-            # print(f"found potential mirror: {lines[i]}")
             if isMirror(lines, i):
                 return i + 1
         i += 1

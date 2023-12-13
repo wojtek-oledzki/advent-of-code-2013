@@ -5,6 +5,7 @@ def main(input_file):
     with open(f"{input_file}") as file:
         analyse(file)
 
+
 def analyse(file):
     mapRows = []
     mapCols = []
@@ -15,7 +16,7 @@ def analyse(file):
         line = file.readline()
 
         if not line:
-            sum += analyseMap(list(map(mapDotAndHash, mapRows)), list(map(mapDotAndHash, mapCols)))
+            sum += analyseMap(mapRows, mapCols)
             break
 
         line = line.strip()
@@ -25,8 +26,8 @@ def analyse(file):
             isMapsFirstLine = False
 
         if line == "":
-
-            sum += analyseMap(list(map(mapDotAndHash, mapRows)), list(map(mapDotAndHash, mapCols)))
+            sum += analyseMap(mapRows, mapCols)
+            # reset
             mapRows = []
             isMapsFirstLine = True
 
@@ -34,9 +35,11 @@ def analyse(file):
             mapRows.append(line)
             for i, c in enumerate(line):
                 mapCols[i] += c
+
     print(f"total sum: {sum}")
 
-def mapDotAndHash(line):
+
+def mapDotAndHashAsBinaryToInt(line):
     bLine = ""
     for c in line:
         if c == ".":
@@ -47,8 +50,14 @@ def mapDotAndHash(line):
     return int(bLine, 2)
 
 def analyseMap(rows, cols):
-    smudges = 1
+    return analyseMapWithSmudges(
+        list(map(mapDotAndHashAsBinaryToInt, rows)),
+        list(map(mapDotAndHashAsBinaryToInt, cols)),
+        1
+    )
 
+
+def analyseMapWithSmudges(rows, cols, smudges):
     mirrorPosition = findMirror(rows, smudges)
     if mirrorPosition == -1:
         mirrorPosition = findMirror(cols, smudges)
@@ -75,8 +84,11 @@ def findMirror(lines, smudges):
 
     return -1
 
+
+# one bit on
 def isPowerOf2(number):
     return (number & (number - 1) == 0) and number != 0
+
 
 def isMirror(lines, mirrorPosition, smudges):
     l = mirrorPosition - 1
