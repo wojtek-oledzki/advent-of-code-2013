@@ -1,0 +1,12 @@
+version: '3'
+services:
+  python:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM python:3.9.18
+        RUN pip install shapely
+    volumes:
+      - .:/app
+    environment:
+      PYTHONUNBUFFERED: 1
